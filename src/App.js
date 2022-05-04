@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+// treat App.js as the wrapper component that houses all the other components
+// to effect any change on the application, we need to modify this file or add components inside it
+import React from 'react';
 import './App.css';
+// index.js is implied;
+import Nav from './components/Nav';
+import About from './components/About';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    // looks like HTML but actually it's a language called JSX, which can represent HTML in JavaScript
+    <div>
+      <Nav></Nav>
+      <main>
+        <About></About>
+      </main>
     </div>
   );
 }
