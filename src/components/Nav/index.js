@@ -1,30 +1,22 @@
 import React from 'react';
+import { capitalizeFirstLetter } from '../../utils/helpers';
 
-const Nav = () => {
-    const categories = [
-        {
-            name: 'commercial',
-            description:
-            'Photos of grocery stores, food trucks, and other commercial projects',
-        },
-        { name: 'potraits', description: 'Portraits of people in my life' },
-        { name: 'food', description: 'Delicious delicacies' },
-        {
-            name: 'landscape',
-            description: 'Fields, farmhouses, waterfalls, and the beauty of nature',
-        },
-    ];
-
-    function categorySelected() {
-        // eslint-disable-next-line no-restricted-globals
-        console.log(`${name} clicked`);
-    }
+const Nav = (props) => {
+    const {
+        categories = [],
+        setCurrentCategory,
+        currentCategory
+    } = props;
 
     return(
         <header>
             <h2>
                 <a data-testid='link' href='/'>
-                    <span role='img' aria-label='camera'> 📸</span> Oh Snap!
+                    <span role='img' aria-label='camera'>
+                        {' '}
+                        📸
+                    </span>{' '} 
+                    Oh Snap!
                 </a>
             </h2>
             <nav>
@@ -40,11 +32,16 @@ const Nav = () => {
                     {/* note that the .map() must return only a single JSX element - (), versus multiple - {} */}
                     {categories.map((category) => (
                         <li
-                            className='mx-1'
-                            key={category.name}
+                            // 'Short-circuit' expression, 
+                            className={`mx-1 ${
+                                // as long as left side is true, the right side gets evaluated and sets navActive as a class
+                                currentCategory.name === category.name && 'navActive'
+                            }`} key={category.name}
                         >
-                            <span onClick={categorySelected(category.name)}>
-                                {category.name}
+                            <span onClick={() => {
+                                setCurrentCategory(category)
+                            }}>
+                                {capitalizeFirstLetter(category.name)}
                             </span>
                         </li>
                     ))}
