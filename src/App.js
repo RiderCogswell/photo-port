@@ -1,7 +1,6 @@
 // treat App.js as the wrapper component that houses all the other components
 // to effect any change on the application, we need to modify this file or add components inside it
 import React, { useState } from 'react';
-import './App.css';
 // index.js is implied;
 import Nav from './components/Nav';
 import About from './components/About';
@@ -30,7 +29,7 @@ function App() {
       ></Nav>
       <main>
         <div>
-          <Gallery></Gallery>
+          <Gallery currentCategory={currentCategory}></Gallery>
           <About></About>
         </div>
       </main>

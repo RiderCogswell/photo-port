@@ -12,7 +12,7 @@ const Nav = (props) => {
     useEffect(() => {
         // first argument is the callback function
         document.title = capitalizeFirstLetter(currentCategory.name);
-        // second argument is an array with a single element.w
+        // second argument is an array with a single element
     }, [currentCategory]);
 
 
