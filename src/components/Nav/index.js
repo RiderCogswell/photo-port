@@ -6,7 +6,9 @@ const Nav = (props) => {
     const {
         categories = [],
         setCurrentCategory,
-        currentCategory
+        currentCategory,
+        contactSelected,
+        setContactSelected
     } = props;
     
     useEffect(() => {
@@ -30,13 +32,14 @@ const Nav = (props) => {
             </h2>
             <nav>
                 <ul className='flex-row'>
-                    <li className='mx-2'>
-                        <a data-testid='about' href='#about'>
+                    {/* another short circuit function, if contactSelected add navActive as class */}
+                    <li className={`mx-2 ${contactSelected && 'navActive'}`}>
+                        <a data-testid='about' href='#about' onClick={() => setContactSelected(false)}>
                             About Me
                         </a>
                     </li>
                     <li>
-                        <span>Contact</span>
+                        <span onClick={() => setContactSelected(true)}>Contact</span>
                     </li>
                     {/* note that the .map() must return only a single JSX element - (), versus multiple - {} */}
                     {categories.map((category) => (
@@ -44,12 +47,14 @@ const Nav = (props) => {
                             // 'Short-circuit' expression, 
                             className={`mx-1 ${
                                 // as long as left side is true, the right side gets evaluated and sets navActive as a class
-                                currentCategory.name === category.name && 'navActive'
+                                currentCategory.name === category.name && !contactSelected && `navActive`
                             }`} key={category.name}
                         >
                             <span onClick={() => {
-                                setCurrentCategory(category)
-                            }}>
+                                setCurrentCategory(category);
+                                setContactSelected(false);
+                                }}
+                            >
                                 {capitalizeFirstLetter(category.name)}
                             </span>
                         </li>
