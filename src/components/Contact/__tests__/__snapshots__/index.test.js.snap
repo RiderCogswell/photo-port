@@ -3,7 +3,9 @@
 exports[`contact component matches snapshot 1`] = `
 <DocumentFragment>
   <section>
-    <h1>
+    <h1
+      data-testid="h1tag"
+    >
       Contact Me
     </h1>
     <form
@@ -45,7 +47,7 @@ exports[`contact component matches snapshot 1`] = `
         />
       </div>
       <button
-        type="submit"
+        data-testid="button"
       >
         Submit
       </button>

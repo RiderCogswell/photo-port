@@ -4,9 +4,11 @@ import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Contact from '../../Contact';
 
+afterEach(cleanup)
+
 describe('contact component', () => {
     it('renders', () => {
-        <Contact/>
+        <Contact />
     })
 
     it('matches snapshot', () => {
@@ -17,7 +19,7 @@ describe('contact component', () => {
 
 it('renders', () => {
     const { getByTestId } = render(<Contact />)
-    expect(getByTestId('h1tag')).toHaveTextContent('Contact me')
+    expect(getByTestId('h1tag')).toHaveTextContent('Contact Me')
 })
 
 it('render', () => {
