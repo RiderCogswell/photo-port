@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/prefer-screen-queries */
 import React from "react";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
@@ -27,9 +28,20 @@ describe('modal component', () => {
             <Modal 
                 currentPhoto={currentPhoto}
                 toggleModal={mockToggleModal}
-            />
-        )
+            />);
 
         expect(asFragment()).toMatchSnapshot();
+    })
+})
+
+describe('click event', () => {
+    it('calls onClose handler', () => {
+        const { getByText } = render(<Modal 
+            currentPhoto={currentPhoto}
+            onClose={mockToggleModal}
+        />);
+        fireEvent.click(getByText('Close this modal'));
+        
+        expect(mockToggleModal).toHaveBeenCalledTimes(1)
     })
 })
